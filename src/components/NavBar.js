@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MdMenu, MdClose } from "react-icons/md";
 
 const navLinks = [
@@ -10,13 +10,28 @@ const navLinks = [
   { id: "6", title: "Themes" },
 ];
 
-const NavBar = () => {
+const NavBar = ({ router }) => {
   const [active, setActive] = useState(navLinks[0].title);
   const [toggle, setToggle] = useState(false);
+
+  useEffect(() => {
+    setToggle(false);
+  }, [router]);
 
   return (
     <div className="w-full flex pt-6 pb-4 justify-between items-center ">
       <ul className="list-none sm:inline-flex hidden justify-start items-end flex-1 ">
+        {router.pathname.includes("/article") && (
+          <li
+            className={" cursor-pointer text-[18px] select-none mr-10 "}
+            onClick={() => {
+              setActive("All");
+              router.push("/");
+            }}
+          >
+            Home
+          </li>
+        )}
         {navLinks.map((nav, index) => (
           <li
             key={nav.id}
@@ -25,7 +40,15 @@ const NavBar = () => {
               (index === navLinks.length - 1 ? " mr-0 " : " mr-10 ") +
               (active === nav.title ? " text-blue-600 " : " text-black ")
             }
-            onClick={() => setActive(nav.title)}
+            onClick={() => {
+              setActive(nav.title);
+              router.push({
+                pathname: "/",
+                query: {
+                  category: nav.title,
+                },
+              });
+            }}
           >
             {nav.title}
           </li>
@@ -48,10 +71,21 @@ const NavBar = () => {
         <div
           className={
             (toggle ? "flex " : "hidden ") +
-            " p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl z-10 bg-slate-200 drop-shadow-lg  "
+            " p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl z-50 bg-slate-200 drop-shadow-lg sidebar "
           }
         >
           <ul className="list-none flex flex-col justify-end items-start flex-1 ">
+            {router.pathname.includes("/article") && (
+              <li
+                className={" cursor-pointer text-[16px] select-none mb-4 "}
+                onClick={() => {
+                  setActive("All");
+                  router.push("/");
+                }}
+              >
+                Home
+              </li>
+            )}
             {navLinks.map((nav, index) => (
               <li
                 key={nav.id}
@@ -60,7 +94,15 @@ const NavBar = () => {
                   (index === navLinks.length - 1 ? " mb-0 " : " mb-4 ") +
                   (active === nav.title ? " text-blue-600 " : " text-black ")
                 }
-                onClick={() => setActive(nav.title)}
+                onClick={() => {
+                  setActive(nav.title);
+                  router.push({
+                    pathname: "/",
+                    query: {
+                      category: nav.title,
+                    },
+                  });
+                }}
               >
                 {nav.title}
               </li>
