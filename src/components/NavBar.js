@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { MdMenu, MdClose } from "react-icons/md";
 
+/* array label categorie */
 const navLinks = [
   { id: "1", title: "All" },
   { id: "2", title: "Design" },
@@ -32,6 +33,7 @@ const NavBar = ({ router }) => {
             Home
           </li>
         )}
+        {/* map per elenco label categorie */}
         {navLinks.map((nav, index) => (
           <li
             key={nav.id}
@@ -55,6 +57,7 @@ const NavBar = ({ router }) => {
         ))}
       </ul>
 
+      {/*  NavBar per dispositivi mobili  */}
       <div className="sm:hidden flex flex-1 justify-end items-center">
         {toggle ? (
           <MdClose

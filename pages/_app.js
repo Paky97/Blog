@@ -10,6 +10,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <div className="w-full overflow-hidden bg-white  sm:px-16 px-6">
       <div className=" flex justify-center items-center flex-col sm:pt-8 ">
+        {/* componente per NavBar */}
         <NavBar router={router} />
         <div className="sm:border-b-[3px] sm:border-gray-500 h-full w-full rounded-b-xl"></div>
       </div>

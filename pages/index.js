@@ -8,6 +8,7 @@ export default function Home({ router }) {
   const [filter, setFilter] = useState("");
 
   useEffect(() => {
+    /* condizione di filtro per categoria */
     if (router.query.category && router.query.category != "All") {
       setFilter(
         "http://localhost:8000/articles/?category=" + router.query.category
@@ -18,6 +19,7 @@ export default function Home({ router }) {
   }, [router]);
 
   useEffect(() => {
+    /* fake api con fake loader */
     if (!filter) return;
     setTimeout(() => {
       fetch(filter)
@@ -41,6 +43,7 @@ export default function Home({ router }) {
 
   return (
     <>
+      {/* loader */}
       {loader && (
         <div className="flex justify-center items-center w-full h-screen">
           <div class="lds-roller">
