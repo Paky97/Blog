@@ -19,7 +19,7 @@ export default function Article({ router }) {
       <main className="mt-10">
         <div
           className="mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative"
-          style={{ height: "24em" }}
+          style={{ height: "24rem" }}
         >
           <div
             className="absolute left-0 bottom-0 w-full h-full z-10"

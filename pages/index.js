@@ -1,6 +1,7 @@
 import Card from "../src/components/Card";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import CardSkeleton from "../src/components/CardSkeleton";
 
 export default function Home({ router }) {
   const [articles, setArticles] = useState([]);
@@ -45,8 +46,11 @@ export default function Home({ router }) {
     <>
       {/* loader */}
       {loader && (
-        <div className="flex justify-center items-center w-full h-screen">
-          <div class="lds-roller">
+        //Skeleton Loader
+        <CardSkeleton cards={8} />
+        // Simple Loader
+        /*  <div className="flex justify-center items-center w-full h-screen">
+          <div className="lds-roller">
             <div></div>
             <div></div>
             <div></div>
@@ -56,22 +60,15 @@ export default function Home({ router }) {
             <div></div>
             <div></div>
           </div>
-        </div>
+        </div> */
       )}
       <div className="my-12 mx-auto px-4 ">
-        <div
-          onClick={(e) => console.log(e)}
-          className="flex flex-wrap gap-10 -mx-1 lg:-mx-4"
-        >
+        <div className="flex flex-wrap gap-10 -mx-1 lg:-mx-4">
+          <CardSkeleton />
           {articles.length > 0 &&
             articles.map((art, index) => {
               return (
-                <Card
-                  key={"card_article_" + index}
-                  art={art}
-                  index={index}
-                  router={router}
-                />
+                <Card key={"card_article_" + index} art={art} router={router} />
               );
             })}
         </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Card({ art, index, onClick, router }) {
+function Card({ art, router }) {
   return (
     <div>
       {art.featured && (
